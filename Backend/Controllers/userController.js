@@ -30,8 +30,45 @@ const retrieveUser=async(req,res)=>{
         
     }
 }
+
+const updateUsers= async (req,res)=>{
+
+    const {id} =req.params;
+    const userData=req.body;
+
+    try{
+        const updatedUser= await userModel.findByIdAndUpdate({_id:id},userData)
+        res.status(200).json({msg:"User Updated Successfully"})
+
+    }
+    catch(err)
+    {
+        res.status(400).json({msg:"User Not Found",error:err})
+    }
+
+
+}
+
+
+const deleteUsers= async(res,req)=>{
+    const {id}=req.params;
+
+    try{
+        const deletedUser=await userModel.findByIdAndDelete({_id:id})
+        res.status(200).json({msg:"User Deleted Successfully"})
+
+    }
+    catch(err)
+    {
+        res.status(400).json({msg:"User Not Found",error:err})
+    }
+}
+
+
 module.exports={
     createUser,
-    retrieveUser
+    retrieveUser,
+    updateUsers,
+    deleteUsers
 }
 
