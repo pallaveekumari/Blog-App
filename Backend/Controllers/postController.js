@@ -24,12 +24,32 @@ catch(err)
 const updatePost=async (req,res)=>{
 
     const {id}=req.params;
-    const {postData}=req.body;
+    const postData=req.body;
     try{
-        const updatedPost=
+        const updatedPost= await postModel.findByIdAndUpdate({_id:id},postData)
+    res.status(200).json({msg:"updated post successfully"})
+    }
+    catch(err)
+    {
+        res.status(400).json({msg:"Post Not Found",error:err})
     }
 
 }
+
+
+const deletePost=async (req,res)=>{
+    const {id}=req.params;
+    try{
+const deletedPost= await postModel.findByIdAndDelete({_id:id})
+    }
+    catch(err)
+    {
+        res.status(400).json({msg:"Post Not Found",error:err})
+    }
+}
 module.exports={
-    retrievePost
+    retrievePost,
+    updatePost,
+    deletePost
+
 }
