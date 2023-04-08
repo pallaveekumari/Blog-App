@@ -1,9 +1,3 @@
-// id (unique identifier)
-// user_id (foreign key referencing the User model)
-// content (string, 1-300 characters)
-// created_at (timestamp, automatically set when the post is created)
-// updated_at (timestamp, automatically updated when the post is updated)
-// likes (integer, non-negative)
 const mongoose = require('mongoose');
 
 const postSchema =  mongoose.Schema({
