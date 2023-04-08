@@ -1,6 +1,6 @@
 const { postModel } = require("../Models/postModel");
 const { userModel } = require("../Models/userModel");
-
+//Retrieve the total number of users.
 const analyticsUsers = async (req, res) => {
   try {
     const totalData = await userModel.countDocuments();
@@ -12,13 +12,26 @@ const analyticsUsers = async (req, res) => {
     res.status(400).json({ msg: "Something went wrong", error: err });
   }
 };
+
+//Retrieve the top 5 most active users, based on the number of posts.
 const analyticsUsersTopActive = async (req, res) => {
   try {
+    const data = await postModel.aggregate([
+      {
+        $lookup: {
+          from: "users",
+          localField: "user_id",
+          foreignField: "_id",
+          as: "data",
+        },
+      },
+    ]);
+    res.send(data);
   } catch (err) {
     res.status(400).json({ msg: "Something went wrong", error: err });
   }
 };
-
+//Retrieve the total number of posts.
 const analyticsPosts = async (req, res) => {
   try {
     const totalPost = await userModel.countDocuments();
@@ -30,7 +43,9 @@ const analyticsPosts = async (req, res) => {
     res.status(400).json({ msg: "Something went wrong", error: err });
   }
 };
-const analyticsPostsTopActive = async (req, res) => {
+
+//Retrieve the top 5 most liked posts.
+const analyticsPostsTopLiked = async (req, res) => {
   try {
     const topActivePosts = await postModel.aggregate([
       { $sort: { likes: -1 } },
@@ -48,5 +63,5 @@ module.exports = {
   analyticsUsers,
   analyticsPosts,
   analyticsUsersTopActive,
-  analyticsPostsTopActive,
+  analyticsPostsTopLiked,
 };

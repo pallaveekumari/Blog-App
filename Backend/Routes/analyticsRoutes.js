@@ -3,14 +3,15 @@ const {
   analyticsUsers,
   analyticsPosts,
   analyticsUsersTopActive,
-  analyticsPostsTopActive,
+ 
+  analyticsPostsTopLiked,
 } = require("../Controllers/analyticsController");
 const analyticsRoutes = Router();
 
 analyticsRoutes.get("/users", analyticsUsers);
 analyticsRoutes.get("/posts", analyticsPosts);
 analyticsRoutes.get("/users/top-active", analyticsUsersTopActive);
-analyticsRoutes.get("/posts/top-liked", analyticsPostsTopActive);
+analyticsRoutes.get("/posts/top-liked", analyticsPostsTopLiked);
 module.exports = {
   analyticsRoutes,
 };

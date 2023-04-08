@@ -1,5 +1,9 @@
 const { userModel } = require("../Models/userModel");
 
+
+
+//Create a new user.
+
 const createUser = async (req, res) => {
   const { name, email, bio } = req.body;
   try {
@@ -14,6 +18,9 @@ const createUser = async (req, res) => {
     res.status(400).json({ msg: "Something went wrong", error: err });
   }
 };
+
+
+//Retrieve a user by id.
 
 const retrieveUser = async (req, res) => {
   const { id } = req.params;
@@ -30,6 +37,7 @@ const retrieveUser = async (req, res) => {
   }
 };
 
+//Update a user's name or bio by id.
 const updateUsers = async (req, res) => {
   const { id } = req.params;
   const userData = req.body;
@@ -41,7 +49,7 @@ const updateUsers = async (req, res) => {
     res.status(400).json({ msg: "User Not Found", error: err });
   }
 };
-
+//Delete a user by id
 const deleteUsers = async (res, req) => {
   const { id } = req.params;
 
