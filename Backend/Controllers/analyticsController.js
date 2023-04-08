@@ -10,6 +10,14 @@ const analyticsUsers=async (req,res)=>{
         res.status(400).json({msg:"Something went wrong",error:err})
     }
 }
+const analyticsUsersTopActive=async (req,res)=>{
+    try{
+    }
+    catch(err)
+    {
+        res.status(400).json({msg:"Something went wrong",error:err})
+    }
+}
 
 const analyticsPosts=async (req,res)=>{
     try{
@@ -21,10 +29,19 @@ const analyticsPosts=async (req,res)=>{
         res.status(400).json({msg:"Something went wrong",error:err})
     }
 }
-
+const analyticsPostsTopActive=async (req,res)=>{
+    try{
+    }
+    catch(err)
+    {
+        res.status(400).json({msg:"Something went wrong",error:err})
+    }
+}
 
 
 module.exports={
     analyticsUsers,
-    analyticsPosts
+    analyticsPosts,
+    analyticsUsersTopActive,
+    analyticsPostsTopActive
 }
