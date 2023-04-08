@@ -1,63 +1,74 @@
 const { postModel } = require("../Models/postModel");
-const createPost=async (req,res)=>{
- const postData=req.body;
- 
-
-
-}
+const createPost = async (req, res) => {
+  const postData = req.body;
+};
 
 const retrievePost = async (req, res) => {
   const { id } = req.params;
 
   try {
     const post = await postModel.findById({ _id: id });
-    res.status(200).json({ msg: "Retrieving Post Successfully", post });
+    // console.log(post);
+    res.status(200).send({ msg: "Retrieving Post Successfully", post });
   } catch (err) {
-    res.status(400).json({ msg: "Retrieving Post Not Found" });
+    res.status(400).send({ msg: "Retrieving Post Not Found" });
   }
 };
 
 const updatePost = async (req, res) => {
   const { id } = req.params;
-  const postData = req.body;
+  const { content } = req.body;
+  //   console.log(id)
   try {
-    const updatedPost = await postModel.findByIdAndUpdate(
+    if (content.length == 0 || content.length > 300) {
+      res.status(404).send({ msg: "Invalid content" });
+    }
+    await postModel.findByIdAndUpdate(
       { _id: id },
-      postData
+      { content: content },
+      { new: true }
     );
-    res.status(200).json({ msg: "updated post successfully" });
+
+    res.status(200).send({ msg: "Post updated successfully" });
   } catch (err) {
-    res.status(400).json({ msg: "Post Not Found", error: err });
+    res.status(400).send({ msg: "Post Not Found", error: err });
   }
 };
 
 const deletePost = async (req, res) => {
   const { id } = req.params;
+
   try {
-    const deletedPost = await postModel.findByIdAndDelete({ _id: id });
-    res.status(200).json({ msg: "Deleted Post Successfully", deletedPost });
+    await postModel.findByIdAndDelete({ _id: id });
+    res.status(200).send({ msg: "Deleted Post Successfully" });
   } catch (err) {
-    res.status(400).json({ msg: "Post Not Found", error: err });
+    res.status(400).send({ msg: "Post Not Found", error: err });
   }
 };
 
 const likePost = async (req, res) => {
   const { id } = req.params;
   try {
-    const likedPost = await postModel.findOneAndUpdate({ _id: id });
-    res.status(200).json({ msg: "Liked Post Successfully", likedPost });
+    await postModel.findOneAndUpdate({ _id: id }, { $inc: { likes: 1 } });
+    res.status(200).send({ msg: "Liked Post Successfully" });
   } catch (err) {
-    res.status(400).json({ msg: "Something went wrong", error: err });
+    res.status(400).send({ msg: "Something went wrong", error: err });
   }
 };
 
 const unLikePost = async (req, res) => {
   const { id } = req.params;
   try {
-    const unLikedPost = await postModel.findOneAndUpdate({ _id: id });
-    res.status(200).json({ msg: "UnLiked Post Successfully", unLikedPost });
+    const post = await postModel.findOne({ _id: id });
+    if (post.likes == 0) {
+      res
+        .status(200)
+        .send({ msg: "We cannot unlike because likes are already zero" });
+    }
+    await postModel.findOneAndUpdate({ _id: id }, { $inc: { likes: -1 } });
+    res.status(200).send({ msg: "UnLiked Post Successfully" });
   } catch (err) {
-    res.status(400).json({ msg: "Something went wrong", error: err });
+    res.status(400).send({ msg: "Something went wrong", error: err });
   }
 };
 module.exports = {
