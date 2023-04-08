@@ -62,11 +62,12 @@ const unLikePost = async (req, res) => {
     const post = await postModel.findOne({ _id: id });
     if (post.likes == 0) {
       res
-        .status(200)
+        .status(400)
         .send({ msg: "We cannot unlike because likes are already zero" });
+    } else {
+      await postModel.findOneAndUpdate({ _id: id }, { $inc: { likes: -1 } });
+      res.status(200).send({ msg: "UnLiked Post Successfully" });
     }
-    await postModel.findOneAndUpdate({ _id: id }, { $inc: { likes: -1 } });
-    res.status(200).send({ msg: "UnLiked Post Successfully" });
   } catch (err) {
     res.status(400).send({ msg: "Something went wrong", error: err });
   }
