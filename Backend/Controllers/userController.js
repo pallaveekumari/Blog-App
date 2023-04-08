@@ -19,10 +19,13 @@ const retrieveUser = async (req, res) => {
   const { id } = req.params;
   try {
     const user = await userModel.findById({ _id: id });
-
-    res
-      .status(200)
-      .json({ msg: "Retrieved User By its id Successfully", user });
+    if (!user) {
+      res.status(404).json({ msg: "User not found!" });
+    } else {
+      res
+        .status(200)
+        .json({ msg: "Retrieved User By its id Successfully", user });
+    }
   } catch (err) {
     res
       .status(400)
