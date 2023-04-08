@@ -10,6 +10,21 @@ const analyticsUsers=async (req,res)=>{
         res.status(400).json({msg:"Something went wrong",error:err})
     }
 }
+
+const analyticsPosts=async (req,res)=>{
+    try{
+        const totalPost=await userModel.find()
+        res.status(200).json({msg:"Retrieving Total Posts Successfully",totalPost})
+    }
+    catch(err)
+    {
+        res.status(400).json({msg:"Something went wrong",error:err})
+    }
+}
+
+
+
 module.exports={
-    analyticsUsers
+    analyticsUsers,
+    analyticsPosts
 }
