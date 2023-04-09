@@ -18,7 +18,7 @@ export const createPost = (payload) => (dispatch) => {
       dispatch({ type: types.CREATE_POST_FAILURE, error: err });
     });
 };
-
+//delete post
 export const deletePost = (id) => (dispatch) => {
   dispatch({ type: types.DELETE_POST_REQUEST });
   return axios
@@ -30,7 +30,7 @@ export const deletePost = (id) => (dispatch) => {
       dispatch({ type: types.DELETE_POST_FAILURE });
     });
 };
-
+//edit post
 export const editPost = (id, payload) => (dispatch) => {
   dispatch({ type: types.EDIT_POST_REQUEST });
   return axios
@@ -42,7 +42,7 @@ export const editPost = (id, payload) => (dispatch) => {
       dispatch({ type: types.EDIT_POST_FAILURE });
     });
 };
-
+//get all posts
 export const getAllPosts = () => (dispatch) => {
   dispatch({ type: types.GET_POST_REQUEST });
   return axios
@@ -54,23 +54,23 @@ export const getAllPosts = () => (dispatch) => {
       dispatch({ type: types.GET_POST_FAILURE });
     });
 };
-
+//set edited post
 export const setEditedPost = (data) => (dispatch) => {
   dispatch({ type: types.SET_EDITED_POST, payload: data });
 };
-
+//get users count
 export const getUsersCount = () => (dispatch) => {
   return axios.get("http://localhost:8080/analytics/users").then((res) => {
     dispatch({ type: types.GET_USERS_COUNT, payload: res.data.total_users });
   });
 };
-
+// get post count
 export const getPostsCount = () => (dispatch) => {
   return axios.get("http://localhost:8080/analytics/posts").then((res) => {
     dispatch({ type: types.GET_POSTS_COUNT, payload: res.data.total_posts });
   });
 };
-
+//get top users
 export const getTopUsers = () => (dispatch) => {
   return axios
     .get("http://localhost:8080/analytics/users/top-active")
@@ -78,7 +78,7 @@ export const getTopUsers = () => (dispatch) => {
       dispatch({ type: types.GET_TOP_USERS, payload: res.data });
     });
 };
-
+// get top posts
 export const getTopPosts = () => (dispatch) => {
   return axios
     .get("http://localhost:8080/analytics/posts/top-liked")
@@ -89,19 +89,19 @@ export const getTopPosts = () => (dispatch) => {
       });
     });
 };
-
+// get all users
 export const getAllUsers = () => (dispatch) => {
   return axios.get("http://localhost:8080/users/getusers/all").then((res) => {
     dispatch({ type: types.GET_ALL_USERS, payload: res.data.data });
   });
 };
-
+// delete user
 export const deleteUser = (id) => (dispatch) => {
   return axios.delete(`http://localhost:8080/users/${id}`).then((res) => {
     dispatch({ type: types.DELETE_USER });
   });
 };
-
+//edit user
 export const editUser = (id, payload) => (dispatch) => {
   return axios.put(`http://localhost:8080/users/${id}`, payload).then((res) => {
     dispatch({ type: types.EDIT_USER });
