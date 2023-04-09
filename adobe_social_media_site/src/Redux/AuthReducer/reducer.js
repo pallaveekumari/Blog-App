@@ -4,7 +4,8 @@ const initialdata = {
   token: "",
   isLoading: false,
   isError: false,
-  isAuth: false,
+  loggedInUser: JSON.parse(localStorage.getItem("user")) || {},
+  isAuth: Boolean(localStorage.getItem("token")) || false,
 };
 
 export const reducer = (state = initialdata, action) => {
@@ -22,7 +23,8 @@ export const reducer = (state = initialdata, action) => {
         ...state,
         isLoading: false,
         isAuth: true,
-        token: payload,
+        loggedInUser: payload.user,
+        token: payload.token,
         isError: false,
       };
 
@@ -54,6 +56,14 @@ export const reducer = (state = initialdata, action) => {
         ...state,
         isLoading: false,
         isError: true,
+      };
+    case types.LOGGED_OUT_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        isError: false,
+        isAuth: false,
+        loggedInUser: {},
       };
     default:
       return state;

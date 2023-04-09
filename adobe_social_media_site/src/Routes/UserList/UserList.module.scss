@@ -1,0 +1,52 @@
+.container {
+    margin-top: 3rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  
+  .eachBox {
+    height: 300px;
+    width: 300px;
+    background-color: rgb(251, 218, 111);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+  
+  .likeUnlikeBox {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    height: 60px;
+  
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: #666666;
+    border-top: 1px solid rgb(236, 235, 235);
+    .likeBox {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      box-sizing: border-box;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.5s ease-in-out;
+    }
+  
+    .likeBox:hover {
+      background-color: rgb(236, 235, 235);
+      transform: scale(1.05);
+    }
+  }
+  

@@ -1,42 +1,27 @@
-.mainContainer2 {
-    //   border: 1px solid red;
-    margin-top: 4rem;
-    background-color: #f0f2f5;
-   }
-   
-   
-   .text {
-    font-size: 40px;
-    font-weight: bold;
-   }
-   
-   
-   .mainBox {
+.mainBox {
     width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     gap: 1rem;
-    background-color: #f0f2f5;
-    height: 100vh;
-   }
-   
-   
-   .sidebarBox {
-    width: 25%;
+    height: auto;
+    // border: 1px solid red;
+  }
+  
+  .sidebarBox {
+    width: 35%;
+    // flex: 1;
     height: 40vh;
-    //   border: 2px solid black;
     padding-top: 3rem;
-   }
-   
-   
-   .mainContentBox {
-    width: 70%;
+    // border: 2px solid black;
+  }
+  
+  .mainContentBox {
+    width: 40%;
     height: 200px;
     //   border: 2px solid red;
-   }
-   
-   
-   .userTextBox {
+  }
+  
+  .userTextBox {
     display: flex;
     align-items: center;
     gap: 1rem;
@@ -45,13 +30,15 @@
     cursor: pointer;
     text-align: left;
     border-radius: 5px;
-   }
-   
-   
-   .userTextBox:hover {
+  }
+  
+  .userTextBox:hover {
     background-color: rgb(233, 233, 233);
-   }
-   
-   
-   
-   
+  }
+  
+  .UserDetailsBox {
+    width: 40%;
+    padding-right: 2rem;
+  }
+  
+  

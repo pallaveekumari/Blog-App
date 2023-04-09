@@ -1,0 +1,76 @@
+.mainContentBox {
+  width: 100%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+  // border: 2px solid blue;
+}
+
+.eachBox {
+  background-color: white;
+  height: 300px;
+  width: 80%;
+  border-radius: 0 10px 10px 10px;
+  padding: 1rem;
+  box-sizing: border-box;
+  position: relative;
+  .contentText {
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  .likeUnlikeBox {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    height: 60px;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: #666666;
+    border-top: 1px solid rgb(236, 235, 235);
+    .likeBox {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      box-sizing: border-box;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.5s ease-in-out;
+    }
+
+    .likeBox:hover {
+      background-color: rgb(236, 235, 235);
+      transform: scale(1.05);
+    }
+  }
+}
+
+.loaderBox {
+  width: 100%;
+  padding-right: 3rem;
+}
+
+.createPostBox {
+  width: 40rem;
+  height: 4rem;
+  border: 1px solid black;
+  border-radius: 40px;
+  margin: auto;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 3rem;
+  cursor: pointer;
+}
+.createPostBox:hover{
+  background-color: rgb(228, 226, 226);
+}

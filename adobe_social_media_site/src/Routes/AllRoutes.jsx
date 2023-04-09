@@ -1,24 +1,28 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import Analytics from "./UserAnalytics/UserAnalytics";
 import Homepage from "./Homepage/Homepage";
-import Loginform from "./LoginForm/Loginform";
-import Postform from "./Postform/Postform";
-import Postpage from "./PostPage/Postpage";
+
+import UserAnalytics from "./UserAnalytics/UserAnalytics";
+import PostAnalytics from "./PostAnalytics/PostAnalytics";
 import Userform from "./UserForm/Userform";
-import Userpage from "./UserPage/Userpage";
+import Loginform from "./LoginForm/Loginform";
+
+import UserList from "./UserList/UserList";
+import Postform from "./Postform/Postform";
 
 const AllRoutes = () => {
   return (
     <Routes>
       <Route path={"/"} element={<Homepage />} />
-      <Route path={"/users"} element={<Userpage />} />
-      <Route path={"/posts"} element={<Postpage />} />
-      <Route path={"/analytics"} element={<Analytics />} />
+      <Route path={"/users"} element={<UserList />} />
+     
+      <Route path={"/useranalytics"} element={<UserAnalytics />} />
+      <Route path="/postanalytics" element={<PostAnalytics />} />
       <Route path={"/userform"} element={<Userform />} />
       <Route path={"/login"} element={<Loginform />} />
       <Route path={"/postform"} element={<Postform />} />
     </Routes>
   );
 };
+
 export default AllRoutes;

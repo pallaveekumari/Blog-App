@@ -8,9 +8,9 @@ export const login = (payload) => (dispatch) => {
     .post("http://localhost:8080/users/login", payload)
 
     .then((res) => {
-      
       localStorage.setItem("token", res.data.token);
-      dispatch({ type: types.LOGIN__SUCEESS,payload:true});
+      localStorage.setItem("user", JSON.stringify(res.data.user));
+      dispatch({ type: types.LOGIN__SUCEESS, payload: res.data });
     })
     .catch((err) => {
       dispatch({ type: types.LOGIN__FAILURE });
@@ -29,4 +29,11 @@ export const createUser = (payload) => (dispatch) => {
     .catch((err) => {
       dispatch({ type: types.CREATE_USER_FAILURE, error: err });
     });
+};
+
+// Logout user
+export const logout = () => (dispatch) => {
+  localStorage.removeItem("user");
+  localStorage.removeItem("token");
+  dispatch({ type: types.LOGGED_OUT_SUCCESS });
 };
