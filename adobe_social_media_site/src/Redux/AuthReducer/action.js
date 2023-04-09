@@ -1,5 +1,6 @@
 import * as types from "../AuthReducer/actionTypes";
 import axios from "axios";
+//login
 export const login = (payload) => (dispatch) => {
   dispatch({ type: types.LOGIN__REQUEST });
 
@@ -7,14 +8,15 @@ export const login = (payload) => (dispatch) => {
     .post("http://localhost:8080/users/login", payload)
 
     .then((res) => {
-      localStorage.setItem("token", JSON.stringify(res.token));
-      dispatch({ type: types.LOGIN__SUCEESS });
+      
+      localStorage.setItem("token", JSON.stringify(res.data.token));
+      dispatch({ type: types.LOGIN__SUCEESS,payload:true});
     })
     .catch((err) => {
       dispatch({ type: types.LOGIN__FAILURE });
     });
 };
-
+//signup==createuser
 export const createUser = (payload) => (dispatch) => {
   dispatch({ type: types.CREATE_USER_REQUEST });
 

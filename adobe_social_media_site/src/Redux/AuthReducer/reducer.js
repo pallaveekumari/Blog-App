@@ -22,7 +22,7 @@ export const reducer = (state = initialdata, action) => {
         ...state,
         isLoading: false,
         isAuth: true,
-        token: payload.token,
+        token: payload,
         isError: false,
       };
 

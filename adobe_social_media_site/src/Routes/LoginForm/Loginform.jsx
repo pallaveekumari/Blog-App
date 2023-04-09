@@ -2,9 +2,9 @@ import React, { useState } from "react";
 
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-import styles from "../UserForm/Userform.module.scss";
+import styles from "../LoginForm/Loginform.module.scss"
 import {
-    Alert,
+  Alert,
   Button,
   FormControl,
   IconButton,
@@ -16,15 +16,15 @@ import {
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import Appbar from "../../Components/Appbar";
+import { createUser, login } from "../../Redux/AuthReducer/action";
+import { useNavigate } from "react-router-dom";
 import {useDispatch} from "react-redux"
-import { createUser } from "../../Redux/AuthReducer/action";
-const init = {
-  name: "",
-  email: "",
-  bio: "",
-  password: "",
-};
-const Userform = () => {
+const init={
+    
+    email:"",
+    password:""
+}
+const Loginform = () => {
   const [showPassword, setShowPassword] = React.useState(false);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -33,39 +33,41 @@ const Userform = () => {
     event.preventDefault();
   };
   const [formdata, setFormData] = useState(init);
-const dispatch=useDispatch()
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formdata, [name]: value });
   };
+ const dispatch=useDispatch()
+  const navigate = useNavigate();
+
   const handleSubmit = () => {
-    dispatch(createUser(formdata)).then((res)=>{
-      return (  <Alert variant="filled" severity="success">
+    dispatch(login(formdata)).then((res) => {
+      let token = localStorage.getItem("token");
+
+      if (token) {
+       return ( <Alert variant="filled" severity="success">
           This is a success alert — check it out!
         </Alert>)
-    })
+        navigate("/");
+      } else {
+        return (<Alert variant="filled" severity="error">
+          This is an error alert — check it out!
+        </Alert>);
+      }
+    });
   };
+
   return (
     <Box>
-        <Appbar/>
-        <Box className={styles.mainbox}>
-<Typography variant="h3" component="h2">
- Create A New User Here
-</Typography>
+      <Appbar />
+      <Box className={styles.mainbox}>
+      <Typography variant="h3" component="h2">
+        User Can Login Here
+      </Typography>
 
-      <Box
-        className={styles.formbox}
-        component="form"
-       
-      >
-        <TextField
-          id="outlined-basic"
-          label="enter your name"
-          variant="outlined"
-          name={"name"}
-          onChange={handleChange}
-          fullWidth
-        />
+      <Box className={styles.formbox} component="form">
+      
         <TextField
           id="outlined-basic"
           label="enter your email"
@@ -74,15 +76,8 @@ const dispatch=useDispatch()
           onChange={handleChange}
           fullWidth
         />
-        <TextField
-          id="outlined-basic"
-          label="enter your bio"
-          variant="outlined"
-          name={"bio"}
-          onChange={handleChange}
-          fullWidth
-        />
-        <FormControl variant="outlined"  fullWidth>
+
+        <FormControl variant="outlined" fullWidth>
           <InputLabel htmlFor="outlined-adornment-password">
             Password
           </InputLabel>
@@ -90,8 +85,7 @@ const dispatch=useDispatch()
             id="outlined-adornment-password"
             type={showPassword ? "text" : "password"}
             name={"password"}
-            onChange={handleChange}
-           
+          onChange={handleChange}
             endAdornment={
               <InputAdornment position="end">
                 <IconButton
@@ -108,7 +102,7 @@ const dispatch=useDispatch()
           />
         </FormControl>
         <Button onClick={handleSubmit} variant="contained" color="success">
-          Submit
+          Login
         </Button>
       </Box>
     </Box>
@@ -116,4 +110,4 @@ const dispatch=useDispatch()
   );
 };
 
-export default Userform;
+export default Loginform;
