@@ -7,6 +7,7 @@ const { postRoutes } = require("./Routes/postRoutes");
 const app = express();
 require("dotenv").config();
 const PORT = process.env.PORT || 7500;
+
 app.use(cors(), express.json());
 app.use("/users", userRoutes);
 app.use("/analytics", analyticsRoutes);

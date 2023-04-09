@@ -20,11 +20,14 @@ const analyticsUsersTopActive = async (req, res) => {
       {
         $lookup: {
           from: "users",
-          localField: "user_id",
-          foreignField: "_id",
-          as: "data",
+          localField: "_id",
+          foreignField: "user_id",
+          as: "users",
         },
       },
+      {
+        
+      }
     ]);
     res.send(data);
   } catch (err) {
