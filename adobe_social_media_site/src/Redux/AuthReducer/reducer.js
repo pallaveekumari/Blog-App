@@ -34,6 +34,27 @@ export const reducer = (state = initialdata, action) => {
         isAuth: false,
         token: "",
       };
+
+    case types.CREATE_USER_REQUEST:
+      return {
+        ...state,
+        isLoading: true,
+        isError: false,
+      };
+
+    case types.CREATE_USER_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        isError: false,
+      };
+
+    case types.CREATE_USER_FAILURE:
+      return {
+        ...state,
+        isLoading: false,
+        isError: true,
+      };
     default:
       return state;
   }
