@@ -1,6 +1,6 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import Analytics from "./Analytics/Analytics";
+import Analytics from "./UserAnalytics/UserAnalytics";
 import Homepage from "./Homepage/Homepage";
 import Loginform from "./LoginForm/Loginform";
 import Postform from "./Postform/Postform";

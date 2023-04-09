@@ -18,6 +18,7 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import Appbar from "../../Components/Appbar";
 import {useDispatch} from "react-redux"
 import { createUser } from "../../Redux/AuthReducer/action";
+import { useNavigate } from "react-router-dom";
 const init = {
   name: "",
   email: "",
@@ -34,22 +35,22 @@ const Userform = () => {
   };
   const [formdata, setFormData] = useState(init);
 const dispatch=useDispatch()
+const navigate=useNavigate()
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formdata, [name]: value });
   };
   const handleSubmit = () => {
     dispatch(createUser(formdata)).then((res)=>{
-      return (  <Alert variant="filled" severity="success">
-          This is a success alert — check it out!
-        </Alert>)
+      alert("New User Form is Created !")
+      navigate("/")
     })
   };
   return (
     <Box>
         <Appbar/>
         <Box className={styles.mainbox}>
-<Typography variant="h3" component="h2">
+<Typography variant="h4" component="h2">
  Create A New User Here
 </Typography>
 

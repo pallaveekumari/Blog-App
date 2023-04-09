@@ -9,7 +9,7 @@ export const login = (payload) => (dispatch) => {
 
     .then((res) => {
       
-      localStorage.setItem("token", JSON.stringify(res.data.token));
+      localStorage.setItem("token", res.data.token);
       dispatch({ type: types.LOGIN__SUCEESS,payload:true});
     })
     .catch((err) => {

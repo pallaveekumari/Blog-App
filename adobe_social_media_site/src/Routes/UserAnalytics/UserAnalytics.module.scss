@@ -1,0 +1,74 @@
+.mainContainer {
+    //   padding-top: 2rem;
+    height: 100vh;
+   }
+   
+   
+   .heading {
+    padding: 2rem 0;
+   }
+   
+   
+   .dataMainBox {
+    margin-top: 2rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    //   align-items: center
+    gap: 2rem;
+   }
+   
+   
+   .totalUserBox {
+    height: 300px;
+    width: 300px;
+    border-radius: 10px;
+    background-color: rgb(251, 218, 111);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+   }
+   
+   
+   .totalUserText {
+    font-size: 25px;
+    font-weight: bold;
+    color: rgb(92, 76, 132);
+   }
+   
+   
+   .userCount {
+    color: rgb(73, 57, 111);
+   }
+   
+   
+   .topUsersListBox {
+    border-radius: 10px;
+    width: 400px;
+    height: auto;
+    background-color: rgb(171, 211, 241);
+    padding: 1rem;
+    box-sizing: border-box;
+   }
+   
+   
+   .eachUserDetail {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
+   }
+   
+   
+   .eachUserTextBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+   }
+   
+   
+   
+   
