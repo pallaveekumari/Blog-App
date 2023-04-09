@@ -5,9 +5,10 @@ const {
   deletePost,
   likePost,
   unLikePost,
+  createPost,
 } = require("../Controllers/postController");
 const postRoutes = Router();
-
+postRoutes.post("/",createPost)
 postRoutes.get("/:id", retrievePost);
 postRoutes.put("/:id", updatePost);
 postRoutes.delete("/:id", deletePost);

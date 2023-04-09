@@ -1,5 +1,8 @@
 const { postModel } = require("../Models/postModel");
 const { userModel } = require("../Models/userModel");
+const jwt = require("jsonwebtoken");
+require("dotenv").config();
+
 //Retrieve the total number of users.
 const analyticsUsers = async (req, res) => {
   try {
@@ -16,18 +19,30 @@ const analyticsUsers = async (req, res) => {
 //Retrieve the top 5 most active users, based on the number of posts.
 const analyticsUsersTopActive = async (req, res) => {
   try {
-    const data = await postModel.aggregate([
+    const data = await userModel.aggregate([
       {
         $lookup: {
-          from: "users",
+          from: "posts",
           localField: "_id",
           foreignField: "user_id",
-          as: "users",
+          as: "posts",
         },
       },
       {
-        
-      }
+        $project: {
+          id: "$_id",
+          name:1,
+          email:1,
+          bio:1,
+          created_at:1,
+          updated_at:1,
+          post_count: { $size: "$posts" },
+        },
+      },
+      {
+        $sort: { post_count: -1 },
+      },
+      { $limit: 5 },
     ]);
     res.send(data);
   } catch (err) {

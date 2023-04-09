@@ -1,24 +1,84 @@
 const { userModel } = require("../Models/userModel");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+require("dotenv").config();
 
+//login
 
-
-//Create a new user.
-
-const createUser = async (req, res) => {
-  const { name, email, bio } = req.body;
+const userLogin = async (req, res) => {
+  const { email, password } = req.body;
   try {
-    const newUser = await new userModel({
-      name,
-      email,
-      bio,
-    });
-    await newUser.save();
-    res.status(200).json({ msg: "New User Created Successfully" });
+    const users = await userModel.find({ email });
+    if (users.length == 0) {
+      res
+        .status(400)
+        .json({ msg: "User doesnot exist please Create a new User" });
+    } else {
+      const matchPassword = await bcrypt.compare(password, users[0].password);
+      if (!matchPassword) {
+        res.status(400).json({ msg: "Incorrect Password" });
+      } else {
+        let token = jwt.sign({ user_id: users[0]._id }, process.env.SECRET);
+        res.status(200).json({ msg: "login Successfull", token: token });
+      }
+    }
   } catch (err) {
     res.status(400).json({ msg: "Something went wrong", error: err });
   }
 };
 
+//Create a new user.
+
+const createUser = async (req, res) => {
+  const { name, email, bio, password } = req.body;
+
+  const users = await userModel.find({ email });
+  try {
+    if (users.length != 0) {
+      res.status(400).json({ msg: "user already exist" });
+    } else {
+      bcrypt.genSalt(6, (err, salt) => {
+        if (err) {
+          res.status(400).json({ msg: "Something went wrong" });
+        } else {
+          bcrypt.hash(password, salt, async (err, hash) => {
+            if (err) {
+              res.status(400).json({ msg: "Something went wrong" });
+            } else {
+              const newUsers = await new userModel({
+                name,
+                email,
+                bio,
+                password: hash,
+              });
+              await newUsers.save();
+              res.status(200).json({ msg: "New User Created Successfully" });
+            }
+          });
+        }
+      });
+    }
+  } catch (err) {
+    res.status(400).json({ msg: "Something went wrong", error: err });
+  }
+};
+
+//Create a new user.
+
+// const createUser = async (req, res) => {
+//   const { name, email, bio } = req.body;
+//   try {
+//     const newUser = await new userModel({
+//       name,
+//       email,
+//       bio,
+//     });
+//     await newUser.save();
+//     res.status(200).json({ msg: "New User Created Successfully" });
+//   } catch (err) {
+//     res.status(400).json({ msg: "Something went wrong", error: err });
+//   }
+// };
 
 //Retrieve a user by id.
 
@@ -43,7 +103,10 @@ const updateUsers = async (req, res) => {
   const userData = req.body;
 
   try {
-    await userModel.findByIdAndUpdate({ _id: id }, userData);
+    await userModel.findByIdAndUpdate(
+      { _id: id },
+      { ...userData, updated_at: Date.now() }
+    );
     res.status(200).json({ msg: "User Updated Successfully" });
   } catch (err) {
     res.status(400).json({ msg: "User Not Found", error: err });
@@ -66,4 +129,5 @@ module.exports = {
   retrieveUser,
   updateUsers,
   deleteUsers,
+  userLogin,
 };

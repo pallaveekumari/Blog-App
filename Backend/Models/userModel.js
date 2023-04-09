@@ -14,6 +14,7 @@ const userSchema = mongoose.Schema({
          message: 'Invalid email format',
     },
   },
+  password: { type: String, required: true },
   bio: { type: String, maxlength: 200 },
   created_at: { type: Date, default: Date.now },
   updated_at: { type: Date, default: Date.now },
