@@ -1,0 +1,57 @@
+.mainContainer2 {
+    //   border: 1px solid red;
+    margin-top: 4rem;
+    background-color: #f0f2f5;
+   }
+   
+   
+   .text {
+    font-size: 40px;
+    font-weight: bold;
+   }
+   
+   
+   .mainBox {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    background-color: #f0f2f5;
+    height: 100vh;
+   }
+   
+   
+   .sidebarBox {
+    width: 25%;
+    height: 40vh;
+    //   border: 2px solid black;
+    padding-top: 3rem;
+   }
+   
+   
+   .mainContentBox {
+    width: 70%;
+    height: 200px;
+    //   border: 2px solid red;
+   }
+   
+   
+   .userTextBox {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.5rem 1rem;
+    box-sizing: border-box;
+    cursor: pointer;
+    text-align: left;
+    border-radius: 5px;
+   }
+   
+   
+   .userTextBox:hover {
+    background-color: rgb(233, 233, 233);
+   }
+   
+   
+   
+   
