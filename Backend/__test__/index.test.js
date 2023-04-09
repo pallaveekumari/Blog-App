@@ -1,19 +1,18 @@
-// Import necessary dependencies and modules
-const request = require("supertest");
-const app = require("../app"); // assuming your Express app is defined in a file called 'app.js'
-const User = require("../models/user"); // assuming your User model is defined in a file called 'user.js'
-const Post = require("../models/post"); // assuming your Post model is defined in a file called 'post.js'
 
+const request = require("supertest");
+const app = require("../app"); 
+const User = require("../models/user"); 
+const Post = require("../models/post");
 // User Test Cases
 describe("User Endpoints", () => {
   let newUser;
 
   beforeEach(() => {
-    // Create a new user for each test case
+   
     newUser = new User({
       id: "1",
-      name: "John Doe",
-      email: "johndoe@example.com",
+      name: " Adobe",
+      email: "Adobe@gmail.com",
       bio: "I am a software developer.",
       created_at: new Date(),
       updated_at: new Date(),
@@ -22,21 +21,20 @@ describe("User Endpoints", () => {
   });
 
   afterEach(() => {
-    // Remove the user after each test case
     User.remove({});
   });
 
   test("should create a new user", async () => {
     const response = await request(app).post("/users").send({
-      name: "Jane Smith",
-      email: "janesmith@example.com",
+      name: "adobe photoshop",
+      email: "adobe@example.com",
       bio: "I am a web designer.",
     });
 
     expect(response.statusCode).toBe(201);
     expect(response.body).toHaveProperty("id");
-    expect(response.body).toHaveProperty("name", "Jane Smith");
-    expect(response.body).toHaveProperty("email", "janesmith@example.com");
+    expect(response.body).toHaveProperty("name", "adobe photoshop");
+    expect(response.body).toHaveProperty("email", "adobe@example.com");
     expect(response.body).toHaveProperty("bio", "I am a web designer.");
     expect(response.body).toHaveProperty("created_at");
     expect(response.body).toHaveProperty("updated_at");
@@ -97,11 +95,7 @@ describe("User Endpoints", () => {
     expect(response.body).toHaveProperty;
   });
 });
-// Import necessary dependencies and modules
-// const request = require('supertest');
-// const app = require('../app'); // assuming your Express app is defined in a file called 'app.js'
-// const User = require('../models/user'); // assuming your User model is defined in a file called 'user.js'
-// const Post = require('../models/post'); // assuming your Post model is defined in a file called 'post.js'
+
 
 // Post Test Cases
 describe("Post Endpoints", () => {
@@ -111,15 +105,15 @@ describe("Post Endpoints", () => {
     // Create a new user for each test case
     newUser = new User({
       id: "1",
-      name: "John Doe",
-      email: "johndoe@example.com",
+      name: "adobe assign",
+      email: "adobeassign@example.com",
       bio: "I am a software developer.",
       created_at: new Date(),
       updated_at: new Date(),
     });
     newUser.save();
 
-    // Create a new post for each test case
+    
     newPost = new Post({
       id: "1",
       user_id: newUser.id,
@@ -132,7 +126,7 @@ describe("Post Endpoints", () => {
   });
 
   afterEach(() => {
-    // Remove the user and post after each test case
+  
     User.remove({});
     Post.remove({});
   });

@@ -8,7 +8,7 @@ const userSchema = mongoose.Schema({
     unique: true,
     validate: {
          validator: (value) => {
-              // Check if the value is a valid email format
+           
               return /\S+@\S+\.\S+/.test(value);
          },
          message: 'Invalid email format',
@@ -26,9 +26,3 @@ module.exports = {
   userModel,
 };
 
-// id (unique identifier)
-// name (string, 1-50 characters)
-// email (string, valid email format)
-// bio (optional string, 0-200 characters)
-// created_at (timestamp, automatically set when the user is created)
-// updated_at (timestamp, automatically updated when the user is updated)

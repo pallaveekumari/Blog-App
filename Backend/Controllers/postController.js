@@ -94,6 +94,15 @@ const unLikePost = async (req, res) => {
     res.status(400).send({ msg: "Something went wrong", error: err });
   }
 };
+// get all posts
+const getAllPosts = async (req, res) => {
+  try {
+    const data = await postModel.find();
+    res.status(200).json({ msg: "all Posts", data: data });
+  } catch (err) {
+    res.status(400).json({ msg: "something went wrong" });
+  }
+};
 module.exports = {
   createPost,
   retrievePost,
@@ -101,4 +110,5 @@ module.exports = {
   deletePost,
   likePost,
   unLikePost,
+  getAllPosts
 };

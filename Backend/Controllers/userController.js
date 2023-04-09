@@ -19,7 +19,9 @@ const userLogin = async (req, res) => {
         res.status(400).json({ msg: "Incorrect Password" });
       } else {
         let token = jwt.sign({ user_id: users[0]._id }, process.env.SECRET);
-        res.status(200).json({ msg: "login Successfull", token: token });
+        res
+          .status(200)
+          .json({ msg: "login Successfull", token: token, user: users[0] });
       }
     }
   } catch (err) {
@@ -63,25 +65,6 @@ const createUser = async (req, res) => {
   }
 };
 
-//Create a new user.
-
-// const createUser = async (req, res) => {
-//   const { name, email, bio } = req.body;
-//   try {
-//     const newUser = await new userModel({
-//       name,
-//       email,
-//       bio,
-//     });
-//     await newUser.save();
-//     res.status(200).json({ msg: "New User Created Successfully" });
-//   } catch (err) {
-//     res.status(400).json({ msg: "Something went wrong", error: err });
-//   }
-// };
-
-//Retrieve a user by id.
-
 const retrieveUser = async (req, res) => {
   const { id } = req.params;
   try {
@@ -113,7 +96,7 @@ const updateUsers = async (req, res) => {
   }
 };
 //Delete a user by id
-const deleteUsers = async (res, req) => {
+const deleteUsers = async (req, res) => {
   const { id } = req.params;
 
   try {
@@ -123,6 +106,15 @@ const deleteUsers = async (res, req) => {
     res.status(400).json({ msg: "User Not Found", error: err });
   }
 };
+//get all users
+const allUsers = async (req, res) => {
+  try {
+    const data = await userModel.find();
+    res.status(200).send({ data: data });
+  } catch (err) {
+    res.status(400).send({ msg: "something went wrong" });
+  }
+};
 
 module.exports = {
   createUser,
@@ -130,4 +122,5 @@ module.exports = {
   updateUsers,
   deleteUsers,
   userLogin,
+  allUsers,
 };
