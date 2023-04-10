@@ -16,6 +16,9 @@ export const GET_POST_FAILURE = "GET_POST_FAILURE";
 
 export const SET_EDITED_POST = "SET_EDITED_POST";
 
+export const SET_EDITED_USER = "SET_EDITED_USER";
+
+
 
 export const GET_USERS_COUNT = "GET_USERS_COUNT";
 

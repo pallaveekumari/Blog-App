@@ -31,11 +31,11 @@ const analyticsUsersTopActive = async (req, res) => {
       {
         $project: {
           id: "$_id",
-          name:1,
-          email:1,
-          bio:1,
-          created_at:1,
-          updated_at:1,
+          name: 1,
+          email: 1,
+          bio: 1,
+          created_at: 1,
+          updated_at: 1,
           post_count: { $size: "$posts" },
         },
       },
@@ -52,7 +52,7 @@ const analyticsUsersTopActive = async (req, res) => {
 //Retrieve the total number of posts.
 const analyticsPosts = async (req, res) => {
   try {
-    const totalPost = await userModel.countDocuments();
+    const totalPost = await postModel.count();
     res.status(200).json({
       msg: "Retrieving Total Posts Successfully",
       total_posts: totalPost,

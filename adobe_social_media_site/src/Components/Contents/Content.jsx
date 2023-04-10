@@ -62,7 +62,7 @@ const Content = () => {
 
   useEffect(() => {
     dispatch(getAllPosts());
-    console.log(appReducer);
+
   }, []);
   return (
     <Box className={styles.mainContentBox}>

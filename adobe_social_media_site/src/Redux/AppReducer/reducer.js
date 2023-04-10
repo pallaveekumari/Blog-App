@@ -6,6 +6,7 @@ const initialdata = {
   posts: [],
   users: [],
   editedPost: {},
+  editedUser:{},
   totalUsers: 0,
   totalPosts: 0,
   topUsers: [],
@@ -57,6 +58,13 @@ export const reducer = (state = initialdata, action) => {
         isError: false,
         editedPost: payload,
       };
+      case types.SET_EDITED_USER:
+        return {
+          ...state,
+          isLoading: false,
+          isError: false,
+          editedUser: payload,
+        };
     case types.GET_USERS_COUNT:
       return {
         ...state,

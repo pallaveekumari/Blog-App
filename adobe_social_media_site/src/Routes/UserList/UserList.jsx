@@ -14,27 +14,25 @@ import {
   Typography,
 } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteUser, getAllUsers } from "../../Redux/AppReducer/action";
+import { deleteUser, getAllUsers, setEditedUser } from "../../Redux/AppReducer/action";
 import { useNavigate } from "react-router-dom";
 
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
 
 import { deepPurple } from "@mui/material/colors";
-// import Box from "@mui/material/Box";
+
 
 const UserList = () => {
   const appReducer = useSelector((store) => store.AppReducer);
   const dispatch = useDispatch();
-  // console.log(appReducer.users);
 
-  const [selectedLike, setSelectedLike] = useState(null);
+
   const [openDeleteDialog, setOpenDeleteDialog] = React.useState(false);
   const [deleteLoader, setDeleteLoader] = useState(false);
   const [selectedDelete, setSelectedDelete] = useState({});
-  const [editPost, setEditPost] = useState("");
 
-  const navigate = useNavigate();
+const navigate = useNavigate()
 
   const handleClickOpenDeleteDialog = () => {
     setOpenDeleteDialog(true);
@@ -49,7 +47,7 @@ const UserList = () => {
       dispatch(getAllUsers());
       setOpenDeleteDialog(false);
     });
-    // console.log(selectedDelete);
+    
   };
 
   //gcyhcujclujcvujcuj
@@ -102,10 +100,16 @@ const UserList = () => {
                 <Typography variant="p" component={"div"}>
                   Email : {el.email}
                 </Typography>
+                <Typography variant="p" component={"div"}>
+                  Bio : {el.bio}
+                </Typography>
               </Box>
 
               <Box className={styles.likeUnlikeBox}>
-                <Box className={styles.likeBox}>
+                <Box className={styles.likeBox} onClick={()=>{
+                  dispatch(setEditedUser(el))
+                  navigate('/userform')
+                }} >
                   <EditOutlinedIcon /> Edit
                 </Box>
                 <Box

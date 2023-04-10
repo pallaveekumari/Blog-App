@@ -13,7 +13,7 @@ export default function Homepage() {
   return (
     <Box>
       <Appbar />
-      <Box className={styles.createPostBox} ></Box>
+      <Box className={styles.createPostBox}></Box>
       <Box className={styles.mainBox}>
         <Box className={styles.sidebarBox}>
           <Box
@@ -43,6 +43,15 @@ export default function Homepage() {
           >
             <AnalyticsIcon />
             Post Analytics
+          </Box>
+          <Box
+            onClick={() => {
+              navigate("/userform");
+            }}
+            className={styles.userTextBox}
+          >
+            <PeopleAltIcon />
+            Create User
           </Box>
         </Box>
 

@@ -41,10 +41,14 @@ const Postform = () => {
 
   const handleUpdate = () => {
     if (authReducer.isAuth) {
-      dispatch(editPost(appReducer.editedPost._id, formdata)).then((res) => {
-        alert("Post Updated Successfully");
-        navigate("/");
-      });
+      if (formdata.content.length < 1 || formdata.content.length > 300) {
+        alert("Please enter valid content...");
+      } else {
+        dispatch(editPost(appReducer.editedPost._id, formdata)).then((res) => {
+          alert("Post Updated Successfully");
+          navigate("/");
+        });
+      }
     } else {
       alert("Please login first and then try to create post");
     }
