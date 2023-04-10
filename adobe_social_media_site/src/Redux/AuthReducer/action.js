@@ -5,7 +5,7 @@ export const login = (payload) => (dispatch) => {
   dispatch({ type: types.LOGIN__REQUEST });
 
   return axios
-    .post("http://localhost:8080/users/login", payload)
+    .post("https://adobe-backend-189z.onrender.com/users/login", payload)
 
     .then((res) => {
       localStorage.setItem("token", res.data.token);
@@ -21,7 +21,7 @@ export const createUser = (payload) => (dispatch) => {
   dispatch({ type: types.CREATE_USER_REQUEST });
 
   return axios
-    .post("http://localhost:8080/users", payload)
+    .post("https://adobe-backend-189z.onrender.com/users", payload)
 
     .then((res) => {
       dispatch({ type: types.CREATE_USER_SUCCESS });
