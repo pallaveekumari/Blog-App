@@ -142,3 +142,25 @@ export const editUser = (id, payload) => (dispatch) => {
 export const setEditedUser = (data) => (dispatch) => {
   dispatch({ type: types.SET_EDITED_USER, payload: data });
 };
+
+export const likePost = (id) => (dispatch) => {
+  return axios
+    .post(`https://adobe-backend-189z.onrender.com/posts/${id}/like`)
+    .then((res) => {
+      dispatch({ type: types.LIKE });
+    })
+    .catch((err) => {
+      return err;
+    });
+};
+
+export const unlikePost = (id) => (dispatch) => {
+  return axios
+    .post(`https://adobe-backend-189z.onrender.com/posts/${id}/unlike`)
+    .then((res) => {
+      dispatch({ type: types.UNLIKE });
+    })
+    .catch((err) => {
+      return err;
+    });
+};

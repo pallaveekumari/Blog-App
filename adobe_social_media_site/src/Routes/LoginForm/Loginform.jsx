@@ -6,6 +6,7 @@ import styles from "../LoginForm/Loginform.module.scss";
 import {
   Alert,
   Button,
+  CircularProgress,
   FormControl,
   IconButton,
   InputAdornment,
@@ -26,7 +27,7 @@ const init = {
 };
 const Loginform = () => {
   const [showPassword, setShowPassword] = React.useState(false);
-
+  const [load, setload] = useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
   const handleMouseDownPassword = (event) => {
@@ -97,9 +98,17 @@ const Loginform = () => {
                 label="Password"
               />
             </FormControl>
-            <Button onClick={handleSubmit} variant="contained" color="success">
-              Login
-            </Button>
+            {load ? (
+              <CircularProgress />
+            ) : (
+              <Button
+                onClick={handleSubmit}
+                variant="contained"
+                color="success"
+              >
+                Login
+              </Button>
+            )}
           </Box>
         </Box>
       </Box>

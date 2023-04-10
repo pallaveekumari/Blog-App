@@ -14,7 +14,6 @@ const createPost = async (req, res) => {
       if (err) {
         res.status(400).json({ msg: "Something went wrong" });
       } else {
-        console.log(decoded);
         const users = await postModel({ ...payload, user_id: decoded.user_id });
         await users.save();
         res.status(200).json({ msg: "post created successfully" });
@@ -110,5 +109,5 @@ module.exports = {
   deletePost,
   likePost,
   unLikePost,
-  getAllPosts
+  getAllPosts,
 };

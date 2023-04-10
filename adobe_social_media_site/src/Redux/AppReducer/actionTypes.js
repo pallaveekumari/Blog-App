@@ -18,8 +18,6 @@ export const SET_EDITED_POST = "SET_EDITED_POST";
 
 export const SET_EDITED_USER = "SET_EDITED_USER";
 
-
-
 export const GET_USERS_COUNT = "GET_USERS_COUNT";
 
 export const GET_TOP_USERS = "GET_TOP_USERS";
@@ -32,5 +30,8 @@ export const GET_ALL_USERS = "GET_ALL_USERS";
 
 export const DELETE_USER = "DELETE_USER";
 
-export const EDIT_USER = 'EDIT_USER'
+export const EDIT_USER = "EDIT_USER";
 
+export const LIKE = "LIKE";
+
+export const UNLIKE = "UNLIKE";

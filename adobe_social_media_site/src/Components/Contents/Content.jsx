@@ -16,10 +16,13 @@ import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import { useDispatch, useSelector } from "react-redux";
+import ThumbDownAltIcon from "@mui/icons-material/ThumbDownAlt";
 import {
   deletePost,
   getAllPosts,
+  likePost,
   setEditedPost,
+  unlikePost,
 } from "../../Redux/AppReducer/action";
 import { useNavigate } from "react-router-dom";
 
@@ -28,8 +31,7 @@ const Content = () => {
   const [openDeleteDialog, setOpenDeleteDialog] = React.useState(false);
   const [deleteLoader, setDeleteLoader] = useState(false);
   const [selectedDelete, setSelectedDelete] = useState({});
-  const [editPost, setEditPost] = useState("");
-
+  const [Loader, setLoader] = useState(false);
   const dispatch = useDispatch();
   const appReducer = useSelector((store) => store.AppReducer);
   const navigate = useNavigate();
@@ -61,8 +63,8 @@ const Content = () => {
   };
 
   useEffect(() => {
+    setLoader(true);
     dispatch(getAllPosts());
-
   }, []);
   return (
     <Box className={styles.mainContentBox}>
@@ -111,18 +113,29 @@ const Content = () => {
 
             <Box className={styles.likeUnlikeBox}>
               <Box
+                onClick={() => {
+                  dispatch(likePost(el._id)).then((res) => {
+                    dispatch(getAllPosts());
+                  });
+                }}
                 className={styles.likeBox}
-                onClick={() => handleChangeLike(index)}
               >
-                {selectedLike == index ? (
-                  <ThumbUpIcon />
-                ) : (
-                  <ThumbUpOutlinedIcon />
-                )}{" "}
-                Like
+                <ThumbUpOutlinedIcon />
+                Like {el.likes}
               </Box>
-              <Box className={styles.likeBox}>
-                <PreviewOutlinedIcon /> View
+              <Box
+                onClick={() => {
+                  if (el.likes == 0) {
+                    alert("Likes are already zero");
+                  } else {
+                    dispatch(unlikePost(el._id)).then((res) => {
+                      dispatch(getAllPosts());
+                    });
+                  }
+                }}
+                className={styles.likeBox}
+              >
+                <ThumbDownAltIcon /> Unlike
               </Box>
               <Box onClick={() => handleEdit(el)} className={styles.likeBox}>
                 <EditOutlinedIcon /> Edit

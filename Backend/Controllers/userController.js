@@ -64,7 +64,7 @@ const createUser = async (req, res) => {
     res.status(400).json({ msg: "Something went wrong", error: err });
   }
 };
-
+//retrieving user
 const retrieveUser = async (req, res) => {
   const { id } = req.params;
   try {

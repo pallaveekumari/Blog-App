@@ -8,6 +8,7 @@ import { getTopUsers, getUsersCount } from "../../Redux/AppReducer/action";
 
 const UserAnalytics = () => {
   const appReducer = useSelector((store) => store.AppReducer);
+
   const dispatch = useDispatch();
 
   useEffect(() => {

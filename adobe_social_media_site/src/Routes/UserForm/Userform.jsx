@@ -47,12 +47,10 @@ const Userform = () => {
     setFormData({ ...formdata, [name]: value });
   };
   const handleSubmit = () => {
-   
     if (formdata.name.length > 0 && formdata.name.length <= 50) {
       if (formdata.bio.length >= 0 && formdata.bio.length <= 200) {
         if (/\S+@\S+\.\S+/.test(formdata.email)) {
           dispatch(createUser(formdata)).then((res) => {
-          
             if (res?.response?.data?.msg == "user already exist") {
               alert("This user is already exist please try with another email");
             } else {
@@ -79,7 +77,7 @@ const Userform = () => {
       })
     ).then((res) => {
       alert("User Updated Successfully");
-      navigate("/userlist");
+      navigate("/users");
     });
   };
 
