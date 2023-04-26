@@ -1,4 +1,4 @@
-# Adobe_Assignment
+# Blog App
 
 This is a full social media application . All the CRUD functionalities are looked into it with validation in every step.
 
@@ -11,7 +11,7 @@ $ npm run server
 
 ## Run Frontend
 ```
-$ cd adobe_social_media_site
+$ cd frontend
 $ npm install
 $ npm run start
 ```
@@ -90,7 +90,7 @@ $ npm run start
 
 
 ## Deployed Link
- [![deployed link](https://img.shields.io/badge/Deployed_Link-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://adobe123.netlify.app)
+ [![deployed link](https://img.shields.io/badge/Deployed_Link-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://blogAppPal.netlify.app)
 
 ## Github Link
- [![Github link](https://img.shields.io/badge/Deployed_Link-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://github.com/pallaveekumari/adobe_assignment)
+ [![Github link](https://img.shields.io/badge/Deployed_Link-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://github.com/pallaveekumari/Blog-App)
