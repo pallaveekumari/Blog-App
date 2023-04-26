@@ -90,7 +90,7 @@ $ npm run start
 
 
 ## Deployed Link
- [![deployed link](https://img.shields.io/badge/Deployed_Link-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://blogAppPal.netlify.app)
+ [![deployed link](https://img.shields.io/badge/Deployed_Link-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://blog-app-pal.netlify.app)
 
 ## Github Link
  [![Github link](https://img.shields.io/badge/Deployed_Link-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://github.com/pallaveekumari/Blog-App)
