@@ -106,9 +106,11 @@ const Content = () => {
         {" "}
         Start a post ...
       </Box>
+      {appReducer.isLoading?<CircularProgress/> :
+      <>
       {appReducer.posts.map((el, index) => {
         return (
-          <Box className={styles.eachBox}>
+          <Box className={styles.eachBox} key={index}>
             <p className={styles.contentText}>{el.content}</p>
 
             <Box className={styles.likeUnlikeBox}>
@@ -153,6 +155,8 @@ const Content = () => {
           </Box>
         );
       })}
+      </>
+}
     </Box>
   );
 };

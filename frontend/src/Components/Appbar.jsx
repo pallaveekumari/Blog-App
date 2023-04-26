@@ -35,7 +35,7 @@ function Appbar() {
             navigate("/");
           }}
           className={styles.logo}
-          src="https://1000logos.net/wp-content/uploads/2021/04/Adobe-logo.png"
+          src="https://logos-download.com/wp-content/uploads/2016/07/Blogger_logo_wordmark.png"
           alt=""
         />
 

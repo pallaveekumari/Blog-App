@@ -1,5 +1,5 @@
 import Appbar from "../../Components/Appbar";
-import { Box, Button } from "@mui/material";
+import { Box, Button, CircularProgress } from "@mui/material";
 import styles from "./Homepage.module.scss";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 import LocalPostOfficeIcon from "@mui/icons-material/LocalPostOffice";
@@ -7,8 +7,11 @@ import AnalyticsIcon from "@mui/icons-material/Analytics";
 import { useNavigate } from "react-router-dom";
 import Content from "../../Components/Contents/Content";
 import RightSideBar from "../../Components/RightSideBar/RightSideBar";
+import { useSelector } from "react-redux";
 
 export default function Homepage() {
+
+
   const navigate = useNavigate();
   return (
     <Box>
@@ -55,7 +58,7 @@ export default function Homepage() {
           </Box>
         </Box>
 
-        <Content />
+  <Content />
         <Box className={styles.UserDetailsBox}>
           <RightSideBar />
         </Box>
